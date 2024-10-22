@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SeminarioMobile</string>
+    <string name="mainbutton">Hace click</string>
+    <string name="navigationbutton">Ir a segunda pagina</string>
+    <string name="comebackbutton">Volver</string>
+    <string name="titleapp">MovieHeaven</string>
+    <string name="language">es-ES</string>
+    <string name="genrestext">Generos:</string>
+    <string name="averagetext">Rating:</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mobile Seminar</string>
+    <string name="mainbutton">Go to second page</string>
+    <string name="navigationbutton">go back</string>
+    <string name="comebackbutton">Go back</string>
+    <string name="titleapp">MovieHeaven</string>
+    <string name="language">en-US</string>
+    <string name="genrestext">Genres:</string>
+    <string name="averagetext">Average:</string>
+</resources>

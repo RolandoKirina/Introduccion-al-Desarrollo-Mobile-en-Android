@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
-    android:layout_width="25dp"
-    android:background="@color/background1"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background1">
 
     <TextView
         android:id="@+id/titleapp"
@@ -18,10 +18,7 @@
         android:fontFamily="serif-monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/movie_title"
@@ -33,8 +30,7 @@
         android:fontFamily="serif-monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleapp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/titleapp" />
 
     <TextView
         android:id="@+id/movie_overview"
@@ -48,8 +44,20 @@
         android:layout_margin="5sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movie_title"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/movie_title" />
+
+    <TextView
+        android:id="@+id/rating"
+        android:text="@string/averagetext"
+        android:textColor="@color/texts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif-monospace"
+        android:textAlignment="center"
+        android:layout_margin="5sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movie_overview" />
 
     <TextView
         android:id="@+id/vote_average"
@@ -61,8 +69,23 @@
         android:layout_margin="5sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movie_overview"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/rating"
+         />
+
+
+    <TextView
+        android:id="@+id/genres"
+        android:text="@string/genrestext"
+        android:textColor="@color/texts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif-monospace"
+        android:textAlignment="center"
+        android:layout_margin="5sp"
+        app:layout_constraintTop_toBottomOf="@+id/vote_average"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+         />
     <TextView
         android:id="@+id/movie_genres"
         android:textColor="@color/texts"
@@ -73,8 +96,9 @@
         android:layout_margin="5sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vote_average"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/genres" />
+
+
 
     <ImageView
         android:id="@+id/moviePicture"
@@ -83,9 +107,7 @@
         android:layout_marginTop="60sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movie_genres"/>
-
-
+        app:layout_constraintTop_toBottomOf="@+id/movie_genres" />
 
     <Button
         android:id="@+id/navigationbutton"
@@ -98,8 +120,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/moviePicture" />
 
-
-
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
@@ -109,6 +129,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

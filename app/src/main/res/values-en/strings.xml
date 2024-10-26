@@ -8,4 +8,7 @@
     <string name="language">en-US</string>
     <string name="genrestext">Genres:</string>
     <string name="averagetext">Average:</string>
+    <string name="nointernet">No internet</string>
+    <string name="errorunexpected">Unexpected error</string>
+    <string name="nocontent">No content</string>
 </resources>

@@ -7,4 +7,7 @@
     <string name="language">es-ES</string>
     <string name="genrestext">Generos:</string>
     <string name="averagetext">Rating:</string>
+    <string name="nointernet">No hay internet</string>
+    <string name="errorunexpected">Error inesperado</string>
+    <string name="nocontent">No hay contenido</string>
 </resources>

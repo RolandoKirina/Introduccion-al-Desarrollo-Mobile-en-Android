@@ -4,73 +4,76 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import ar.edu.unicen.seminario.Genre
+
 import ar.edu.unicen.seminario.MoviesAdapter
 import ar.edu.unicen.seminario.R
+import ar.edu.unicen.seminario.data.Errors
 import ar.edu.unicen.seminario.databinding.ActivityMainBinding
-import ar.edu.unicen.seminario.entities.Gender
-import ar.edu.unicen.seminario.entities.Movie
+
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityMainBinding
-
     private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
 
         // Inflar el layout y configurar binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        suscribeToUi();
+        suscribeToUi()
         suscribeToViewModel()
-
     }
 
-    private fun suscribeToUi(){
+    private fun suscribeToUi() {
         val language = getString(R.string.language)
-
-        viewModel.getAllMovies(language);
+        viewModel.getAllMovies(language)
     }
-    private fun suscribeToViewModel(){
 
+    private fun suscribeToViewModel() {
         viewModel.loading.onEach { loading ->
-            if (loading) {
-                binding.progressbar.visibility = View.VISIBLE
-            } else {
-                binding.progressbar.visibility = View.GONE
-            }
-        }.launchIn(lifecycleScope) // se ejecuta cuando la activity esta en ejecucion, en otros estados no
+            binding.progressbar.visibility = if (loading) View.VISIBLE else View.GONE
+        }.launchIn(lifecycleScope)
 
-        viewModel.movies.onEach { movies ->
-            val movieList = movies ?: emptyList()
+        viewModel.movies.onEach { response ->
+            val movieList = response.result ?: emptyList() // Acceso directo a la lista de películas
+            Log.d("resultado", response.result.toString())
             binding.listMovies.adapter = MoviesAdapter(
                 movies = movieList,
                 onMoviesClick = { movie ->
-                    lifecycleScope.launch {
-                        val intent = Intent(this@MainActivity, SecondActivity::class.java).apply {
-                            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                            // Paso el id de la movie
-                            putExtra("id", movie.id)
-                        }
-                        startActivity(intent)
+                    val intent = Intent(this, SecondActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                        putExtra("id", movie.id) // Paso el id de la película
                     }
+                    startActivity(intent)
                 }
             )
         }.launchIn(lifecycleScope)
-    }
 
+        viewModel.errorMessage.onEach { errorMessage ->
+
+            var error: Errors= Errors();
+            if (errorMessage == error.NOINTERNET) {
+                Toast.makeText(this, R.string.nointernet, Toast.LENGTH_LONG).show()
+            }
+            else if(errorMessage== error.UNEXPECTED ){
+                Toast.makeText(this,R.string.errorunexpected,Toast.LENGTH_LONG).show()
+            }
+            else if(errorMessage== error.NOCONTENT){
+                Toast.makeText(this,R.string.nocontent,Toast.LENGTH_LONG).show()
+            }
+
+        }.launchIn(lifecycleScope)
+
+    }
 }

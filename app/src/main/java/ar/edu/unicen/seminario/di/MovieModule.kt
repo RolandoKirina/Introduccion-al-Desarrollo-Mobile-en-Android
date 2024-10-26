@@ -1,9 +1,11 @@
 package ar.edu.unicen.seminario.di
 
+import android.content.Context
 import ar.edu.unicen.seminario.data.MovieApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -34,5 +36,10 @@ import javax.inject.Singleton
             return retrofit.create(MovieApi::class.java)
         }
 
+        @Provides
+        @Singleton
+        fun provideApplicationContext(@ApplicationContext context: Context): Context {
+            return context
+        }
 
     }

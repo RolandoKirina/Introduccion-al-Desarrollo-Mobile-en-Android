@@ -42,11 +42,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun suscribeToViewModel() {
         viewModel.loading.onEach { loading ->
-            binding.progressbar.visibility = if (loading) View.VISIBLE else View.GONE
+            binding.progressbar.visibility =
+                if (loading) View.VISIBLE else View.GONE
         }.launchIn(lifecycleScope)
 
         viewModel.movies.onEach { response ->
-            val movieList = response.result ?: emptyList() // Acceso directo a la lista de películas
+            val movieList = response.result ?: emptyList()
             Log.d("resultado", response.result.toString())
             binding.listMovies.adapter = MoviesAdapter(
                 movies = movieList,
@@ -64,13 +65,13 @@ class MainActivity : AppCompatActivity() {
 
             var error: Errors= Errors();
             if (errorMessage == error.NOINTERNET) {
-                Toast.makeText(this, R.string.nointernet, Toast.LENGTH_LONG).show()
+                Toast.makeText(this, R.string.nointernet, Toast.LENGTH_SHORT).show()
             }
             else if(errorMessage== error.UNEXPECTED ){
-                Toast.makeText(this,R.string.errorunexpected,Toast.LENGTH_LONG).show()
+                Toast.makeText(this,R.string.errorunexpected,Toast.LENGTH_SHORT).show()
             }
             else if(errorMessage== error.NOCONTENT){
-                Toast.makeText(this,R.string.nocontent,Toast.LENGTH_LONG).show()
+                Toast.makeText(this,R.string.nocontent,Toast.LENGTH_SHORT).show()
             }
 
         }.launchIn(lifecycleScope)

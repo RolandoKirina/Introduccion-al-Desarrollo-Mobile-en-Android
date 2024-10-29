@@ -70,7 +70,7 @@ class SecondActivity : AppCompatActivity()  {
                 }
                 if(movieDetail.MovieDetail?.vote_average ==null){
                     binding.rating.text=""
-                }*/
+                }*/ //como arreglar esto?
 
                 binding.movieTitle.text = movieDetail.MovieDetail?.title ?: ""
                 binding.movieOverview.text = movieDetail.MovieDetail?.overview ?: ""
@@ -97,8 +97,6 @@ class SecondActivity : AppCompatActivity()  {
         }.launchIn(lifecycleScope)// se ejecuta cuando la activity esta en ejecucion, en otros estados no
 
         viewModel.errorMessageDetail.onEach { errorMessage ->
-
-            Log.d("piripipi", errorMessage.toString())
 
             if(errorMessage!=null) {
 

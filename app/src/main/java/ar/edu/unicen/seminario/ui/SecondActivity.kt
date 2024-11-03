@@ -65,12 +65,18 @@ class SecondActivity : AppCompatActivity()  {
 
             if(movieDetail!=null) {
                 val concatenatedGenres = movieDetail.MovieDetail?.gender?.joinToString(",") ?: ""
-                /*if(movieDetail.MovieDetail?.gender.isNullOrEmpty()){
+                if(movieDetail.MovieDetail?.gender.isNullOrEmpty()){
                     binding.genres.text=""
+                }
+                else {
+                    binding.genres.text =  getString(R.string.genrestext)
                 }
                 if(movieDetail.MovieDetail?.vote_average ==null){
                     binding.rating.text=""
-                }*/ //como arreglar esto?
+                }
+                else{
+                    binding.rating.text= getString(R.string.averagetext)
+                }
 
                 binding.movieTitle.text = movieDetail.MovieDetail?.title ?: ""
                 binding.movieOverview.text = movieDetail.MovieDetail?.overview ?: ""
